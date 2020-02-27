@@ -38,16 +38,14 @@ window.renderStatistics = function (ctx, players, times) {
   ctx.fillText('Список результатов:', CLOUD_X + GAP * 2, CLOUD_Y + GAP * 4);
 
   var maxTime = getMaxElement(times);
-
+  var randomColor = function () {
+    return 'hsl(240, ' + Math.floor(Math.random() * 100) + '% , 50%)';
+  };
 
   for (var i = 0; i < players.length; i++) {
     ctx.fillStyle = '#000';
     ctx.fillText(Math.round(times[i]), CLOUD_X + GAP * 4 + BAR_WIDTH * 2 * i, CLOUD_Y + GAP * 8 + barHeight - (barHeight * times[i] / maxTime));
     ctx.fillText(players[i], CLOUD_X + GAP * 4 + BAR_WIDTH * 2 * i, CLOUD_Y + GAP * 8 + HISTO_HEIGHT);
-
-    var randomColor = function () {
-      return 'hsl(240, ' + Math.floor(Math.random() * 100) + '% , 50%)';
-    };
 
     if (players[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
