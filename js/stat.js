@@ -47,7 +47,7 @@ window.renderStatistics = function (ctx, players, times) {
 
     var randomColor = function () {
       return 'hsl(240, ' + Math.floor(Math.random() * 100) + '% , 50%)';
-    }
+    };
 
     if (players[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
