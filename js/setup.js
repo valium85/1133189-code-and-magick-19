@@ -12,13 +12,17 @@ var randomIndex = function (arr) {
   return Math.floor(Math.random() * arr.length);
 };
 
-for (var i = 0; i < 4; i++) {
-  wizards[i] = {
-    name: firstNames[randomIndex(firstNames)] + ' ' + lastNames[randomIndex(lastNames)],
-    coatColor: colors[randomIndex(colors)],
-    eyesColor: eyes[randomIndex(eyes)]
-  };
-}
+var generateWizards = function () {
+  for (var i = 0; i < 4; i++) {
+    wizards[i] = {
+      name: firstNames[randomIndex(firstNames)] + ' ' + lastNames[randomIndex(lastNames)],
+      coatColor: colors[randomIndex(colors)],
+      eyesColor: eyes[randomIndex(eyes)]
+    };
+  }
+};
+
+generateWizards();
 
 var similarListElement = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
@@ -26,24 +30,24 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .querySelector('.setup-similar-item');
 
 
-var renderWizard = function () {
+var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
 
-  wizardElement.querySelector('.setup-similar-label').textContent = wizards[i].name;
-  wizardElement.querySelector('.wizard-coat').style.fill = wizards[i].coatColor;
-  wizardElement.querySelector('.wizard-eyes').style.fill = wizards[i].eyesColor;
+  wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
+  wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
+  wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
 
   return wizardElement;
 };
 
-var renderWizards = function () {
+var renderWizardList = function () {
   var fragment = document.createDocumentFragment();
-  for (i = 0; i < wizards.length; i++) {
+  for (var i = 0; i < wizards.length; i++) {
     fragment.appendChild(renderWizard(wizards[i]));
   }
   similarListElement.appendChild(fragment);
-}
+};
 
-renderWizards();
+renderWizardList();
 
 document.querySelector('.setup-similar').classList.remove('hidden');
