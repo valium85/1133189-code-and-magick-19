@@ -36,10 +36,14 @@ var renderWizard = function () {
   return wizardElement;
 };
 
-var fragment = document.createDocumentFragment();
-for (i = 0; i < wizards.length; i++) {
-  fragment.appendChild(renderWizard(wizards[i]));
+var renderWizards = function () {
+  var fragment = document.createDocumentFragment();
+  for (i = 0; i < wizards.length; i++) {
+    fragment.appendChild(renderWizard(wizards[i]));
+  }
+  similarListElement.appendChild(fragment);
 }
-similarListElement.appendChild(fragment);
+
+renderWizards();
 
 document.querySelector('.setup-similar').classList.remove('hidden');
