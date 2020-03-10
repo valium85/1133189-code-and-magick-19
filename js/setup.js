@@ -1,6 +1,8 @@
 'use strict';
 
-document.querySelector('.setup').classList.remove('hidden');
+//document.querySelector('.setup').classList.remove('hidden');
+
+// Блок отрисовки рандомных волшебников
 
 var firstNames = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var lastNames = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
@@ -51,3 +53,52 @@ var renderWizardList = function () {
 renderWizardList();
 
 document.querySelector('.setup-similar').classList.remove('hidden');
+
+// Блок пользовательских сценариев
+
+var ESC_KEY = 'Escape';
+var ENTER_KEY = 'Enter';
+
+var setup = document.querySelector('.setup');
+var setupOpen = document.querySelector('.setup-open');
+var setupClose = setup.querySelector('.setup-close');
+var userNameInput = setup.querySelector('.setup-user-name');
+
+var onPopupEscPress = function (evt) {
+  var target = evt.target;
+  if (target === userNameInput) {
+    target.blur();
+  } else if (evt.key === ESC_KEY) {
+    closePopup();
+  }
+};
+
+var openPopup = function () {
+  setup.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscPress);
+};
+
+var closePopup = function () {
+  setup.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
+};
+
+setupOpen.addEventListener('click', function () {
+  openPopup();
+});
+
+setupOpen.addEventListener('keydown', function (evt) {
+  if (evt.key === ENTER_KEY) {
+    openPopup();
+  }
+});
+
+setupClose.addEventListener('click', function () {
+  closePopup();
+});
+
+setupClose.addEventListener('keydown', function (evt) {
+  if (evt.key === ENTER_KEY) {
+    closePopup();
+  }
+});
