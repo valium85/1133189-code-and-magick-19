@@ -64,6 +64,7 @@ var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
 var userNameInput = setup.querySelector('.setup-user-name');
+var userNameInputFocus = false;
 
 var onPopupEscPress = function (evt) {
   if (evt.key === ESC_KEY) {
@@ -77,9 +78,7 @@ var openPopup = function () {
 };
 
 var closePopup = function () {
-  if (document.activeElement === userNameInput) {
-    userNameInput.blur();
-  } else {
+  if (document.activeElement !== userNameInput) {
     setup.classList.add('hidden');
     document.removeEventListener('keydown', onPopupEscPress);
   }
@@ -89,14 +88,19 @@ setupOpen.addEventListener('click', function () {
   openPopup();
 });
 
+userNameInput.addEventListener('focus', function () {
+  userNameInputFocus = true;
+});
+
 setupOpen.addEventListener('keydown', function (evt) {
   if (evt.key === ENTER_KEY) {
     openPopup();
   }
 });
 
+
 setupClose.addEventListener('click', function () {
-  closePopup();
+  if (userNameInputFocus === false) {closePopup()};
 });
 
 setupClose.addEventListener('keydown', function (evt) {
