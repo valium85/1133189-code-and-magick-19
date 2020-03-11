@@ -100,7 +100,9 @@ setupOpen.addEventListener('keydown', function (evt) {
 
 
 setupClose.addEventListener('click', function () {
-  if (userNameInputFocus === false) {closePopup()};
+  if (userNameInputFocus === false) {
+    closePopup();
+  }
 });
 
 setupClose.addEventListener('keydown', function (evt) {
