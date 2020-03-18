@@ -15,20 +15,24 @@
   var playerFireball = player.querySelector('.setup-fireball-wrap');
   var playerFireballInput = player.querySelector('.fireball-input');
 
+  var randomIndex = function (arr) {
+    return Math.floor(Math.random() * arr.length);
+  };
+
   playerCoat.addEventListener('click', function () {
-    var coatColor = colors[window.random.index(colors)];
+    var coatColor = colors[randomIndex(colors)];
     playerCoat.style.fill = coatColor;
     playerCoatInput.value = coatColor;
   });
 
   playerEyes.addEventListener('click', function () {
-    var eyesColor = eyes[window.random.index(eyes)];
+    var eyesColor = eyes[randomIndex(eyes)];
     playerEyes.style.fill = eyesColor;
     playerEyesInput.value = eyesColor;
   });
 
   playerFireball.addEventListener('click', function () {
-    var fireballColor = fireballs[window.random.index(fireballs)];
+    var fireballColor = fireballs[randomIndex(fireballs)];
     playerFireball.style.backgroundColor = fireballColor;
     playerFireballInput.value = fireballColor;
   });
