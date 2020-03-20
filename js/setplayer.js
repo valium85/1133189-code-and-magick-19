@@ -15,25 +15,37 @@
   var playerFireball = player.querySelector('.setup-fireball-wrap');
   var playerFireballInput = player.querySelector('.fireball-input');
 
+  var wizard = {
+    onEyesChange: function () {},
+    onCoatChange: function () {}
+  };
+
   var randomIndex = function (arr) {
     return Math.floor(Math.random() * arr.length);
   };
 
   playerCoat.addEventListener('click', function () {
-    var coatColor = colors[randomIndex(colors)];
-    playerCoat.style.fill = coatColor;
-    playerCoatInput.value = coatColor;
+    var newColor = colors[randomIndex(colors)];
+    playerCoat.style.fill = newColor;
+    playerCoatInput.value = newColor;
+    wizard.onCoatChange(newColor);
   });
 
   playerEyes.addEventListener('click', function () {
-    var eyesColor = eyes[randomIndex(eyes)];
-    playerEyes.style.fill = eyesColor;
-    playerEyesInput.value = eyesColor;
+    var newColor = eyes[randomIndex(eyes)];
+    playerEyes.style.fill = newColor;
+    playerEyesInput.value = newColor;
+    wizard.onEyesChange(newColor);
   });
 
   playerFireball.addEventListener('click', function () {
-    var fireballColor = fireballs[randomIndex(fireballs)];
-    playerFireball.style.backgroundColor = fireballColor;
-    playerFireballInput.value = fireballColor;
+    var newColor = fireballs[randomIndex(fireballs)];
+    playerFireball.style.backgroundColor = newColor;
+    playerFireballInput.value = newColor;
+
   });
+
+  window.wizard = wizard;
+
 })();
+
